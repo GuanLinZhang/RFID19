@@ -1,0 +1,237 @@
+﻿<UserControl x:Class="shoppingCartLib.ShoppingCart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:shoppingCartLib"
+             mc:Ignorable="d" 
+             Height="500" MinWidth="900">
+
+
+    <!--Style Resource-->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="StyleDefault.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <!--Layout-->
+    <Grid Style="{StaticResource UserControlStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="50" MaxHeight="80"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="160"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!--Text box search-->
+                <TextBox Grid.Column="0" Name="txtBox_Search" Style="{StaticResource SearchBox}" BorderThickness="1" BorderBrush="{StaticResource Color_Border}"  Margin="0,10,0,0" Text="商品编号">
+                </TextBox>
+
+                <!--Clear Search button-->
+                <Label Grid.Column="1" Name="Btn_Clear_Search" Content="重新查询" Height="50" Margin="10,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource Style_Btn_Clear_Filter}" Foreground="White" ></Label>
+            </Grid>
+            <Border Grid.Row="0" Margin="0,0,0,10" Style="{StaticResource Style_Container}" Background="Transparent" >
+
+                <!--Category display list box-->
+
+                <Border Name="Border_Category"  BorderThickness="0,0,1,0"  BorderBrush="{StaticResource Color_Border}" Background="{StaticResource Color_Content_Title_Background}" Margin="0,-1" >
+                    <TextBlock Text="请仔细核对商品数量和信息"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="15,0,15,0" Foreground="White"></TextBlock>
+                </Border>
+
+            </Border>
+            <Border Grid.Row="1" Style="{StaticResource Style_Container}">
+
+                <!--Items list box-->
+                <ListBox Name="ListBox_DisplayItems" Style="{StaticResource ItemListBoxStyle}" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate >
+                            <Border Style="{StaticResource Style_Container}" Background="White"  Width="130" Height="160" ToolTip="{Binding Path=Name}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0" Grid.RowSpan="2" Source="{Binding Path=PicUrl}"  Width="130" Height="120" Stretch="UniformToFill" VerticalAlignment="Top">
+                                    </Image>
+                                    <TextBlock  Grid.Row="1" Text="{Binding Path=UnitPrice, ConverterCulture='en-NZ', StringFormat={} {0:C}}" FontSize="15"  Padding="0,2,2,2"></TextBlock>
+                                    <TextBlock  Grid.Row="2" Padding="2" VerticalAlignment="Center" Text="{Binding Path=Name}" FontSize="15" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="17"></TextBlock>
+
+                                </Grid>
+                            </Border>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    
+                </ListBox>
+            </Border>
+        </Grid>
+
+        <!--Order display area-->
+        <Grid Grid.Column="1" Name="grid_OrderDetails">
+            <Grid Margin="10" >
+                <Border Name="ShoppingCartContainer" Style="{StaticResource Style_Container}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Background="{StaticResource Color_Content_Title_Background}">
+                            <Grid VerticalAlignment="Center" Margin="10">
+
+                                <TextBlock Style="{StaticResource Style_Content_Title}" Text="{Binding Path=OrderNumber,StringFormat= 'Order: #\{0}'}" Grid.ColumnSpan="2" ></TextBlock>
+                            </Grid>
+                        </Border>
+
+                        <!--order items list box-->
+                        <ListBox Name="ListBox_ItemsInOrder" Grid.Row="1" Style="{StaticResource Style_ShoppingCart}" HorizontalContentAlignment="Stretch" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource Color_Border}" Height="50" >
+                                        <Grid Height="50">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="30"/>
+                                                    <ColumnDefinition Width="60"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Column="0" Grid.RowSpan="2" Text="{Binding Path=Name}"  VerticalAlignment="Center" TextAlignment="Left" TextWrapping="Wrap" Margin="10,0,0,0" />
+                                                <TextBlock Grid.Column="1" Grid.RowSpan="2" Name="txbUnitPrice" Text="{Binding Path=UnitPrice,StringFormat={} {0:C}}"  VerticalAlignment="Center" TextAlignment="Right"/>
+                                                <TextBlock Grid.Column="2" Grid.RowSpan="2" Name="txbQuantity"  Text="{Binding Path=Quantity,StringFormat= '*\{0}'}"  VerticalAlignment="Center" TextAlignment="Left"/>
+                                                <TextBlock Grid.Column="3" Grid.RowSpan="2" Name="txbTotalPrice" Text="{Binding Path=TotalPrice, ConverterCulture='en-NZ', StringFormat={} {0:C}}"  VerticalAlignment="Center" TextAlignment="Left"></TextBlock>
+                                                <TextBlock Grid.Column="1" Grid.Row="1" Name="txbDiscount" Visibility="Collapsed" Text="Disc.:" VerticalAlignment="Top" TextAlignment="Right"/>
+                                                <TextBlock Grid.Column="2" Grid.Row="1" Name="txbDiscountPercentage" Visibility="Collapsed"  Text="{Binding Path=DiscountPercentage,StringFormat= '\{0}\%'}" VerticalAlignment="Top" TextAlignment="Left"/>
+                                                <TextBlock Grid.Column="3" Grid.Row="1" Name="txbDiscountedTotalPrice"  Visibility="Collapsed" Text="{Binding Path=DiscountedTotalPrice, ConverterCulture='en-NZ',StringFormat= '-\{0:C}'}" VerticalAlignment="Top" TextAlignment="Left"/>
+                                            </Grid>
+
+                                            <!--cart item click control-->
+
+                                        </Grid>
+                                    </Border>
+                                    <DataTemplate.Triggers>
+                                        <!--<DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                            <Setter TargetName="ShoppingCartItemControl" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>-->
+                                        <DataTrigger Binding="{Binding IsDiscountApplied}" Value="True">
+                                            <Setter TargetName="txbUnitPrice" Property="Grid.RowSpan" Value="1"/>
+                                            <Setter TargetName="txbUnitPrice" Property="VerticalAlignment" Value="Bottom"/>
+                                            <Setter TargetName="txbQuantity" Property="Grid.RowSpan" Value="1"/>
+                                            <Setter TargetName="txbQuantity" Property="VerticalAlignment" Value="Bottom"/>
+                                            <Setter TargetName="txbTotalPrice" Property="Grid.RowSpan" Value="1"/>
+                                            <Setter TargetName="txbTotalPrice" Property="VerticalAlignment" Value="Bottom"/>
+                                            <Setter TargetName="txbDiscount" Property="Visibility" Value="Visible"></Setter>
+                                            <Setter TargetName="txbDiscountPercentage" Property="Visibility" Value="Visible"></Setter>
+                                            <Setter TargetName="txbDiscountedTotalPrice" Property="Visibility" Value="Visible"></Setter>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ItemListBox_ItemSelected" />
+                                    <Setter Property="Padding" Value="0"></Setter>
+                                    <Setter Property="BorderThickness" Value="0"></Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                        <Border Grid.Row="2" BorderBrush="{StaticResource Color_Border}" BorderThickness="0,1,0,0" Margin="0,0,0,5" Grid.RowSpan="2" Height="95" VerticalAlignment="Bottom">
+
+                            <!--Order price display area-->
+                            <Grid  Name="GridCalculation" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="17"></RowDefinition>
+                                    <RowDefinition  Height="17"></RowDefinition>
+                                    <RowDefinition  Height="17"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Text="单项总计:" Margin="0,0,0,2"></TextBlock>
+                                <TextBlock Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Text="{Binding Path=NetPrice,ConverterCulture='en-NZ', StringFormat={} {0:C}}"></TextBlock>
+                                <TextBlock Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Text="邮费:"></TextBlock>
+                                <TextBlock Grid.Column="1"  Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Text="{Binding Path=TaxPrice, ConverterCulture='en-NZ', StringFormat={} {0:C}}"></TextBlock>
+                                <TextBlock Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top"  Text="折扣总计:"></TextBlock>
+                                <TextBlock Grid.Column="1"  Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top"  Text="{Binding Path=DiscountedTotalPrice, ConverterCulture='en-NZ', StringFormat= '-\{0:C}'}"></TextBlock>
+                                <TextBlock Grid.Column="2"  Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  FontSize="20" Grid.RowSpan="3" Text="结算:"></TextBlock>
+                                <Viewbox Grid.Column="3"  Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,5,0">
+                                    <TextBlock Text="{Binding Path=TotalPrice, ConverterCulture='en-NZ', StringFormat={} {0:C}}"></TextBlock>
+                                </Viewbox>
+                                <TextBlock Grid.Column="3" Grid.Row="1" Name="txbOrderDiscountedTotalPrice"  Visibility="Collapsed" Text="{Binding Path=DiscountedTotalPrice, ConverterCulture='en-NZ',StringFormat= '-\{0:C}'}" VerticalAlignment="Top" TextAlignment="Left"/>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="4" BorderBrush="{StaticResource Color_Border}" BorderThickness="0,1,0,0">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="27*"/>
+                                    <RowDefinition Height="22*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--Cancel button-->
+                                <Label Name="Btn_Cancel" Grid.Column="0" Content="取消订单" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource Style_Btn_Cancel}" Foreground="White" MouseLeftButtonDown="Btn_Cancel_MouseLeftButtonDown" Grid.ColumnSpan="2" Margin="0,0,139,-0.666" Grid.RowSpan="2"></Label>
+
+                                <!--Pay button-->
+                                <Label Name="Btn_Pay" Grid.Column="1" Content="结算订单" Height="50"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource Style_Btn_Pay}" Foreground="White" MouseLeftButtonDown="Btn_Pay_MouseLeftButtonDown" Margin="0.333,0,0,-0.666" Grid.RowSpan="2"></Label>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!--Popup message box-->
+        <Grid  Name="Grid_MsgBox"  Panel.ZIndex="1" Grid.ColumnSpan="2" Background="{StaticResource Color_Background}" Visibility="Collapsed">
+            <Border Width="250" MinHeight="200" MaxHeight="400" Style="{StaticResource Style_Container}" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Background="{StaticResource Color_Content_Title_Background}">
+                        <Grid VerticalAlignment="Center" Margin="10">
+                            <TextBlock  x:Name="txtBlock_MsgBox_Title" Style="{StaticResource Style_Content_Title}" />
+                        </Grid>
+                    </Border>
+                    <ScrollViewer Grid.Row="1">
+                        <TextBlock x:Name="txtBlock_MsgBox_Content" TextWrapping="Wrap" VerticalAlignment="Center" Margin="10" FontSize="15"/>
+                    </ScrollViewer>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="Btn_MsgBox_No" Grid.Column="0" Content="No" Height="50"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Style="{StaticResource Style_Btn_Cancel}" MouseLeftButtonDown="Btn_MsgBox_No_MouseLeftButtonDown"/>
+                        <Label x:Name="Btn_MsgBox_Yes" Grid.Column="1" Content="Yes" Height="50"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Style="{StaticResource Style_Btn_Pay}" MouseLeftButtonDown="Btn_MsgBox_Yes_MouseLeftButtonDown"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

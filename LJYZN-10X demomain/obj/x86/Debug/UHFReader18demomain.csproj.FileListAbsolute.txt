@@ -1,0 +1,8 @@
+K:\陆加壹资料文档\兼职\LJYZN-10x\南京陆加壹LJYZN-10X系列一体机读写器\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\x86\Debug\UHFReader18demomain.csprojResolveAssemblyReference.cache
+K:\陆加壹资料文档\兼职\LJYZN-10x\南京陆加壹LJYZN-10X系列一体机读写器\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\x86\Debug\UHFReader18demomain.Form1.resources
+K:\陆加壹资料文档\兼职\LJYZN-10x\南京陆加壹LJYZN-10X系列一体机读写器\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\x86\Debug\UHFReader18demomain.Properties.Resources.resources
+K:\陆加壹资料文档\兼职\LJYZN-10x\南京陆加壹LJYZN-10X系列一体机读写器\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\x86\Debug\UHFReader18demomain.csproj.GenerateResource.Cache
+K:\陆加壹资料文档\兼职\LJYZN-10x\南京陆加壹LJYZN-10X系列一体机读写器\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\bin\x86\Debug\UHFReader18demomain.exe
+K:\陆加壹资料文档\兼职\LJYZN-10x\南京陆加壹LJYZN-10X系列一体机读写器\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\bin\x86\Debug\UHFReader18demomain.pdb
+K:\陆加壹资料文档\兼职\LJYZN-10x\南京陆加壹LJYZN-10X系列一体机读写器\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\x86\Debug\UHFReader18demomain.exe
+K:\陆加壹资料文档\兼职\LJYZN-10x\南京陆加壹LJYZN-10X系列一体机读写器\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\x86\Debug\UHFReader18demomain.pdb

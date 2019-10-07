@@ -1,0 +1,373 @@
+﻿<controls:MetroWindow        
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:shoppingCartLib="clr-namespace:shoppingCartLib;assembly=shoppingCartLib"
+        x:Class="RFID915.MainWindow"
+        x:Name="RFID915" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RFID915"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"        
+        mc:Ignorable="d"
+        Title="天津滨海职业学院第八届科技作品展：无人超市" Height="685" Width="934">
+
+
+    <TabControl x:Name="tabControl" Margin="0" SelectedIndex="3">
+        <Controls:MetroTabItem Header="设备控制">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="293*"/>
+                </Grid.ColumnDefinitions>
+                <Controls:ToggleSwitch x:Name="Toggle" Header="Port Open" FontSize="20" Height="61" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180" Margin="10,0,0,0" ContentPadding="0,0,3,0" Controls:ControlsHelper.HeaderMargin="0" />
+                <DockPanel Height="61" LastChildFill="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
+                <ComboBox x:Name="comboBox" Margin="73,76,0,0" FontSize="16" SelectedIndex="2" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="117">
+                    <ComboBoxItem Content="1000ms"/>
+                    <ComboBoxItem Content="2000ms"/>
+                    <ComboBoxItem Content="3000ms"/>
+                    <ComboBoxItem Content="4000ms"/>
+                    <ComboBoxItem Content="5000ms"/>
+                </ComboBox>
+                <Label x:Name="label" Content="TimeOut" Height="39" Width="63" VerticalContentAlignment="Center" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="1.337,1.758" Margin="10,76,0,0"/>
+                <Button x:Name="BtnIntervalSet" Content="Set Interval" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="180" Height="43" FontSize="16"/>
+                <Button x:Name="BtnInventory" Content="INVENTORY" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Width="180" Height="43" FontSize="16"/>
+                <Label x:Name="label1" Content="Stauts:" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center"/>
+                <Label x:Name="LbStatus" Content="应用启动" HorizontalAlignment="Left" Margin="60,255,0,0" VerticalAlignment="Top" Width="130" VerticalContentAlignment="Center"/>
+                <Label x:Name="label3" Content="COM:" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top" Width="45" VerticalContentAlignment="Center"/>
+                <Label x:Name="LbRcode" Content="" HorizontalAlignment="Left" Margin="60,305,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="35"/>
+                <Label x:Name="label2" Content="fComAdr:" HorizontalAlignment="Left" Margin="90,280,0,0" VerticalAlignment="Top" Width="70" VerticalContentAlignment="Center"/>
+                <Label x:Name="LbfComAdr" Content="" HorizontalAlignment="Left" Margin="155,280,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="35"/>
+                <Label x:Name="label4" Content="Rcode：" HorizontalAlignment="Left" Margin="10,305,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="53"/>
+                <Label x:Name="label2_Copy" Content="fBaud:" HorizontalAlignment="Left" Margin="100,305,0,0" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center"/>
+                <Label x:Name="LbfBaud" Content="" HorizontalAlignment="Left" Margin="155,305,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="35"/>
+                <Label x:Name="label5" Content="ComOpen:" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+                <Label x:Name="LbComOpen" Content="" HorizontalAlignment="Left" Margin="81,330,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="35"/>
+                <Label x:Name="LbCOM" Content="" HorizontalAlignment="Left" Margin="55,280,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="35"/>
+                <DockPanel Grid.Column="1" Margin="5,0,10,10">
+                    <ListView x:Name="listViewEPC" Height="455" VerticalAlignment="Top" DockPanel.Dock="Top">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID." Width="40" DisplayMemberBinding="{Binding Path=Id}"/>
+                                <GridViewColumn Header="EPC" Width="280" DisplayMemberBinding="{Binding Path=EPCstring}"/>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <TextBox x:Name="Tb" Height="132" TextWrapping="Wrap" Text="fInventory_EPC_List" VerticalAlignment="Bottom" Width="474" HorizontalAlignment="Left"/>
+                    <Label x:Name="LbCardNum" Content="CardNum" Height="132" VerticalAlignment="Bottom" FontSize="14" Width="183"/>
+                </DockPanel>
+                <Grid HorizontalAlignment="Left" Height="250" Margin="0,360,0,0" VerticalAlignment="Top" Width="224">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26*"/>
+                        <RowDefinition Height="99*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="BtnClearListViewEPC" Grid.Row="0" Content="Clear" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="180" Height="40"/>
+                </Grid>
+
+
+            </Grid>
+        </Controls:MetroTabItem>
+        <Controls:MetroTabItem Header="数据库管理">
+            <Grid Background="White">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,230">
+                    <ListView x:Name="listViewProduct" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="id" DisplayMemberBinding="{Binding id}"/>
+                                <GridViewColumn Header="productID" DisplayMemberBinding="{Binding productID}"/>
+                                <GridViewColumn Header="name" DisplayMemberBinding="{Binding name}"/>
+                                <GridViewColumn Header="type" DisplayMemberBinding="{Binding type}"/>
+                                <GridViewColumn Header="unitPrice" DisplayMemberBinding="{Binding unitPrice}"/>
+                                <GridViewColumn Header="store" DisplayMemberBinding="{Binding store}"/>
+                                <GridViewColumn Header="image" DisplayMemberBinding="{Binding image}"/>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Border>
+
+                <Grid x:Name="theGrid" Height="225" VerticalAlignment="Bottom">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="99*"/>
+                        <ColumnDefinition Width="236*"/>
+                        <ColumnDefinition Width="54*"/>
+                        <ColumnDefinition Width="236*"/>
+                        <ColumnDefinition Width="43*"/>
+                        <ColumnDefinition Width="252*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="LbName" Content="LbName:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="100" Grid.ColumnSpan="2"/>
+                    <Label x:Name="LbProductID" Content="LbProductID:" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="100" Grid.ColumnSpan="2"/>
+                    <Label x:Name="LbUnitPrice" Content="LbUnitPrice:" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Height="45" Width="100" Grid.ColumnSpan="2"/>
+                    <Label x:Name="LbType" Content="LbType:" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="65" Grid.ColumnSpan="2"/>
+                    <Label x:Name="LbStore" Content="LbStore:" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Height="45" Width="65" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="TbName" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Width="526" Grid.ColumnSpan="3" Height="40" VerticalAlignment="Top" Text="{Binding Name}"/>
+                    <TextBox x:Name="TbProductID" Grid.Column="1" HorizontalAlignment="Left" Height="40" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="236" Text="{Binding ProductID}"/>
+                    <TextBox x:Name="TbType" Grid.Column="3" Height="40" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="236" Text="{Binding Type}"/>
+                    <TextBox x:Name="TbUnitPrice" Grid.Column="1" HorizontalAlignment="Left" Height="45" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="236" Text="{Binding UnitPrice, StringFormat=\{0:D\}}"/>
+                    <TextBox x:Name="TbStore" Grid.Column="3" HorizontalAlignment="Left" Height="45" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="236" Text="{Binding Store, StringFormat=\{0:D\}}"/>
+                    <Button x:Name="BtnDataBaseRead" Content="dbo.product" Grid.Column="1" HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="3" VerticalAlignment="Top" Width="236" Height="40"/>
+                    <Button x:Name="BtnDataBaseInsert" Content="Insert" Grid.Column="3" HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="3" VerticalAlignment="Top" Width="236" Height="40"/>
+                    <Button x:Name="BtnUpLoadImage" Content="..." Grid.Column="5" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="142" Height="40" Margin="0,5,0,0"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Grid.Column="5" HorizontalAlignment="Left" Height="135" Grid.RowSpan="3" VerticalAlignment="Top" Width="142">
+                        <Image x:Name="ImgDefault" Source="{Binding Path=Image}"/>
+                    </Border>
+                    <Button x:Name="BtnBindingTest" Content="binding?" Grid.Column="3" HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="4" VerticalAlignment="Top" Width="236" Click="BtnBindingTest_Click" Height="40"/>
+                </Grid>
+
+            </Grid>
+        </Controls:MetroTabItem>
+        <Controls:MetroTabItem x:Name="TbItm_CheckOut" Header="支付页面">
+            <Grid Background="White" Margin="0,23,0,0">
+                <DockPanel LastChildFill="False">
+                    <ProgressBar x:Name="pBar" Height="6" VerticalAlignment="Top" DockPanel.Dock="Top"/>
+
+                </DockPanel>
+                <!--<shoppingCartLib:ShoppingCart x:Name="Shoppingcart" Height="Auto" Margin="0,50,0,56"/>-->
+
+                <Grid Style="{StaticResource UserControlStyle}" Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="50" MaxHeight="80"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="60" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Margin="0,0,0,10" Style="{StaticResource Style_Container}" Background="Transparent" >
+                            <!--Category display list box-->
+
+                            <Border Name="Border_Category"  BorderThickness="0,0,1,0"  BorderBrush="{StaticResource Color_Border}" Background="{StaticResource Color_Content_Title_Background}" Margin="0,-1" >
+                                <TextBlock Text="请仔细核对商品数量和信息"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="15,0,15,0" Foreground="White"></TextBlock>
+                            </Border>
+                        </Border>
+
+                        <Border Grid.Row="1" Style="{StaticResource Style_Container}">
+                            <!--Items list box-->
+                            <ListBox Name="ListBox_DisplayItems" Style="{StaticResource ItemListBoxStyle}" >
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <Border Style="{StaticResource Style_Container}" Background="White"  Width="150" Height="225">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="150"></RowDefinition>
+                                                    <RowDefinition Height="20"></RowDefinition>
+                                                    <RowDefinition Height="15"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Image Grid.Row="0" Grid.RowSpan="2" Source="{Binding Path=image}" Width="150" Height="150" Stretch="UniformToFill" VerticalAlignment="Top"></Image>
+                                                <TextBlock Grid.Row="1" Text="{Binding Path=unitPrice, StringFormat={} {0:C}}" FontSize="15"  Padding="0,2,2,2"></TextBlock>
+                                                <TextBlock Grid.Row="2" Text="{Binding Path=count, StringFormat=*{0:D}}" FontSize="12" Padding="0,2,2,2"></TextBlock>
+                                                <TextBlock Grid.Row="3" Padding="2" VerticalAlignment="Center" Text="{Binding Path=name}" FontSize="12" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="17"></TextBlock>
+
+                                            </Grid>
+                                        </Border>
+
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListBoxItem}">
+                                        <Setter Property="Padding" Value="0"></Setter>
+
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+
+                            </ListBox>
+                        </Border>
+
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="160"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Text box search-->
+                            <TextBox Grid.Column="0" Name="txtBox_Search" Text="自助结算请点击结算按钮" Style="{StaticResource SearchBox}" BorderThickness="1" BorderBrush="{StaticResource Color_Border}"  Margin="0,10,0,0" >
+                            </TextBox>
+
+                            <!--Clear Search button-->
+                            <Label Grid.Column="1" x:Name="BtnCheckOut" Content="结算" Height="50" Margin="10,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource Style_Btn_Clear_Filter}" Foreground="White" ></Label>
+                        </Grid>
+                    </Grid>
+
+                    <!--CheckOut Area-->
+                    <Grid Grid.Column="1" Name="grid_OrderDetails">
+                        <Grid Margin="10">
+                            <Border Name="ShoppingCartContainer" Style="{StaticResource Style_Container}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" Background="{StaticResource Color_Content_Title_Background}">
+                                        <Grid VerticalAlignment="Center" Margin="10">
+                                            <TextBlock Style="{StaticResource Style_Content_Title}" Text="订单编号：#D00212019050847567" HorizontalAlignment="Center"></TextBlock>
+                                        </Grid>
+                                    </Border>
+
+                                    <ListBox Name="ListBox_ItemsInOrder" Grid.Row="1" Style="{StaticResource Style_ShoppingCart}" HorizontalContentAlignment="Stretch" >
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource Color_Border}" Height="50" >
+                                                    <Grid Height="50">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="30"/>
+                                                                <ColumnDefinition Width="15"/>
+                                                                <ColumnDefinition Width="15"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition></RowDefinition>
+                                                                <RowDefinition></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock Grid.Column="0" Grid.RowSpan="2" Text="{Binding Path=name}"  VerticalAlignment="Center" TextAlignment="Left" TextWrapping="Wrap" Margin="10,0,0,0" />
+                                                            <TextBlock Grid.Column="1" Grid.RowSpan="2" Name="txbUnitPrice" Text="{Binding Path=unitPrice,StringFormat={} {0:C}}"  VerticalAlignment="Center" TextAlignment="Right"/>
+                                                            <TextBlock Grid.Column="2" Grid.RowSpan="2" Name="txbQuantity"  Text="{Binding Path=count,StringFormat= '*\{0}'}"  VerticalAlignment="Center" TextAlignment="Left"/>
+                                                            <TextBlock Grid.Column="3" Grid.RowSpan="2" Name="txbTotalPrice" Text="{Binding Path=TotalPrice, ConverterCulture='en-NZ', StringFormat={} {0:C}}"  VerticalAlignment="Center" TextAlignment="Left"></TextBlock>
+                                                            <TextBlock Grid.Column="1" Grid.Row="1" Name="txbDiscount" Visibility="Collapsed" Text="折扣:" VerticalAlignment="Top" TextAlignment="Right"/>
+                                                            <TextBlock Grid.Column="2" Grid.Row="1" Name="txbDiscountPercentage" Visibility="Collapsed"  Text="90%" VerticalAlignment="Top" TextAlignment="Left"/>
+                                                            <TextBlock Grid.Column="3" Grid.Row="1" Name="txbDiscountedTotalPrice"  Visibility="Collapsed" Text="15" VerticalAlignment="Top" TextAlignment="Left"/>
+                                                        </Grid>
+
+                                                    </Grid>
+                                                </Border>
+
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                        <ListBox.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListBoxItem}">
+
+                                                <Setter Property="Padding" Value="0"></Setter>
+                                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
+                                    </ListBox>
+
+                                    <Border Grid.Row="2" BorderBrush="{StaticResource Color_Border}" BorderThickness="0,1,0,0">
+
+                                        <!--Order price display area-->
+                                        <Grid  Name="GridCalculation" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60" />
+                                                <ColumnDefinition Width="60" />
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="17"></RowDefinition>
+                                                <RowDefinition  Height="17"></RowDefinition>
+                                                <RowDefinition  Height="17"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Text="商品种类: "></TextBlock>
+                                            <TextBlock Name="Tbk_product_typeNum" Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Text="{Binding Path=NetPrice, StringFormat={} {0:C}}"></TextBlock>
+                                            <TextBlock Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Text="商品数量: "></TextBlock>
+                                            <TextBlock Name="Tbk_product_totalNum" Grid.Column="1"  Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Text="{Binding Path=TaxPrice, StringFormat={} {0:C}}"></TextBlock>
+                                            <TextBlock Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top"  Text="商品折扣: "></TextBlock>
+                                            <TextBlock Name="Tbk_product_discount" Grid.Column="1"  Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top"  Text="90%"></TextBlock>
+                                            <TextBlock Grid.Column="2"  Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  FontSize="22" Grid.RowSpan="3" Text="合计:" Height="27" Margin="0,14,0,10" Width="50"></TextBlock>
+                                            <Viewbox Grid.Column="3"  Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,5,0">
+                                                <TextBlock Name="Tbk_TOTAL" Text="{Binding Path=TotalPrice, StringFormat={} {0:C}}"></TextBlock>
+                                            </Viewbox>
+                                            <!--<TextBlock Grid.Column="3" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Top" TextAlignment="Left"/>-->
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Grid.Row="4" BorderBrush="{StaticResource Color_Border}" BorderThickness="0,1,0,0">
+                                        <Grid >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="27*"/>
+                                                <RowDefinition Height="22*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <!--Cancel button-->
+                                            <Label Name="Btn_Cancel" Grid.Column="0" Content="取消订单" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource Style_Btn_Cancel}" Foreground="White" MouseLeftButtonDown="Btn_Cancel_MouseLeftButtonDown" Grid.ColumnSpan="2" Margin="0,0,139,-0.666" Grid.RowSpan="2"></Label>
+
+                                            <!--Pay button-->
+                                            <Label Name="Btn_Pay" Grid.Column="1" Content="支付订单" Height="50"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource Style_Btn_Pay}" Foreground="White" MouseLeftButtonDown="Btn_Pay_MouseLeftButtonDown" Margin="0.333,0,0,-0.666" Grid.RowSpan="2"></Label>
+                                        </Grid>
+                                    </Border>
+
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                    <!--Popup message box-->
+                    <Grid  Name="Grid_MsgBox"  Panel.ZIndex="1" Grid.ColumnSpan="2" Background="{StaticResource Color_Background}" Visibility="Collapsed">
+                        <Border Width="250" MinHeight="200" MaxHeight="400" Style="{StaticResource Style_Container}" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+
+                                <Border Grid.Row="0" Background="{StaticResource Color_Content_Title_Background}">
+                                    <Grid VerticalAlignment="Center" Margin="10">
+                                        <TextBlock  x:Name="txtBlock_MsgBox_Title" Style="{StaticResource Style_Content_Title}" />
+                                    </Grid>
+                                </Border>
+        
+                                <Grid Grid.Row="1">
+                                    <TextBlock x:Name="txtBlock_MsgBox_Content" TextWrapping="Wrap" VerticalAlignment="Center" Margin="10" FontSize="15"/>
+                                    <Image x:Name="ImgURL" VerticalAlignment="Center" Margin="10" Stretch="Fill"  Source="repository/payUrl.png"></Image>
+                                </Grid>
+                                
+                                <Grid Grid.Row="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="Btn_MsgBox_No" Grid.Column="0" Content="否" Height="50"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Style="{StaticResource Style_Btn_Cancel}" MouseLeftButtonDown="Btn_MsgBox_No_MouseLeftButtonDown"/>
+                                    <Label x:Name="Btn_MsgBox_Yes" Grid.Column="1" Content="是" Height="50"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Style="{StaticResource Style_Btn_Pay}" MouseLeftButtonDown="Btn_MsgBox_Yes_MouseLeftButtonDown"/>
+                                </Grid>
+
+
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+        </Controls:MetroTabItem>
+        <Controls:MetroTabItem x:Name="TbItm_Help" Header="帮助">
+            <Grid Style="{StaticResource UserControlStyle}" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="50" MaxHeight="80" Height="16*"/>
+                    <RowDefinition Height="71*" />
+                    <RowDefinition Height="165" />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Margin="0,0,0,10" Style="{StaticResource Style_Container}" Background="Transparent" >
+                    <Image  Source="repository/logo.png">
+
+                    </Image>
+
+                </Border>
+                <Label Grid.Row="1" Content="信息工程系" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Width="920" Height="355" VerticalAlignment="Bottom"/>
+                <Label Grid.Row="2" Name="Btn_Help" Content="我同意" FontSize="24" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource Style_Btn_Cancel}" Foreground="White" Margin="307,51,286,64" Width="327" />
+            </Grid>
+        </Controls:MetroTabItem>
+    </TabControl>
+</controls:MetroWindow>

@@ -1,0 +1,12 @@
+K:\陆加壹资料文档\兼职\LJYZN-10x\南京陆加壹LJYZN-10X系列一体机读写器\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\Debug\UHFReader18demomain.exe
+K:\陆加壹资料文档\兼职\LJYZN-10x\南京陆加壹LJYZN-10X系列一体机读写器\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\Debug\UHFReader18demomain.pdb
+C:\Users\sketchpink\Desktop\资料915M\LJYZN-10X串口开发包与演示软件\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\bin\Debug\UHFReader18demomain.exe
+C:\Users\sketchpink\Desktop\资料915M\LJYZN-10X串口开发包与演示软件\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\bin\Debug\UHFReader18demomain.pdb
+C:\Users\sketchpink\Desktop\资料915M\LJYZN-10X串口开发包与演示软件\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\Debug\UHFReader18demomain.Form1.resources
+C:\Users\sketchpink\Desktop\资料915M\LJYZN-10X串口开发包与演示软件\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\Debug\UHFReader18demomain.Properties.Resources.resources
+C:\Users\sketchpink\Desktop\资料915M\LJYZN-10X串口开发包与演示软件\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\Debug\UHFReader18demomain.csproj.GenerateResource.cache
+C:\Users\sketchpink\Desktop\资料915M\LJYZN-10X串口开发包与演示软件\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\Debug\UHFReader18demomain.csproj.CoreCompileInputs.cache
+C:\Users\sketchpink\Desktop\资料915M\LJYZN-10X串口开发包与演示软件\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\Debug\UHFReader18demomain.csproj.CopyComplete
+C:\Users\sketchpink\Desktop\资料915M\LJYZN-10X串口开发包与演示软件\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\Debug\UHFReader18demomain.exe
+C:\Users\sketchpink\Desktop\资料915M\LJYZN-10X串口开发包与演示软件\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\Debug\UHFReader18demomain.pdb
+C:\Users\sketchpink\Desktop\资料915M\LJYZN-10X串口开发包与演示软件\LJYZN-10X 中文版\演示软件\LJYZN-10X串口 Csharp chV2.1\LJYZN-10X demomain\obj\Debug\UHFReader18demomain.csprojAssemblyReference.cache
